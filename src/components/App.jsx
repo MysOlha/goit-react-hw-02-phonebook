@@ -10,21 +10,19 @@ class App extends Component {
     {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
     {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},],
-    filter: ' ',
+    filter: '',
    }
 
-  onAddContact = newContact => {
-  if(this.state.contacts.some(({name}) => name === newContact.name)){
-   alert (` ${newContact.name} is already in contact`)
-   return
-  }
-    console.log(newContact.name)
-    this.setState(({contacts}) => ({contacts: [...contacts, newContact]}))
-  }
-
-  onFilterContact = evt => {
-  this.setState({filter: evt.currentTarget.value})
-  }
+   onAddContact = newName => {
+    if (this.state.contacts.some(({ name }) => name === newName.name || name.toLowerCase() === newName.name.toLowerCase())) {
+      alert(`${newName.name} is alredy in contacts`);
+      return;
+    } this.setState(({contacts}) => ({contacts: [...contacts, newName]}))
+    }
+  
+   onFilterContact = evt => {
+    this.setState({filter: evt.currentTarget.value})
+    }
 
   getContactList = () => { 
     const { filter, contacts } = this.state;
